@@ -1,0 +1,25 @@
+// Add this to your firestore.rules file
+// This allows public read access to insurance companies collection
+// while keeping user's insurance data private
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Insurance companies are publicly readable by all users (including anonymous)
+    match /insurance_companies/{companyId} {
+      allow read: if true;
+      allow write: if false; // Only admins should write companies via admin SDK
+    }
+
+    // User's insurance data - only accessible by the owner
+    match /insurances/{insuranceId} {
+      allow read, write: if request.auth != null &&
+                            (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern gradient background -->
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <!-- Shield gradient - main focus -->
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#56CCF2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2F80ED;stop-opacity:1" />
+    </linearGradient>
+    <!-- Clock gradient -->
+    <linearGradient id="clockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE259;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA726;stop-opacity:1" />
+    </linearGradient>
+    <!-- Accent gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FACFE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00F2FE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Modern background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#backgroundGradient)" stroke="none"/>
+
+  <!-- Central protection shield -->
+  <path d="M256 80 C300 80, 380 95, 380 140 L380 280 C380 360, 320 420, 256 440 C192 420, 132 360, 132 280 L132 140 C132 95, 212 80, 256 80 Z"
+        fill="url(#shieldGradient)" stroke="#1976D2" stroke-width="3"/>
+
+  <!-- Clean checkmark -->
+  <path d="M200 250 L235 285 L320 200" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Modern clock icon (top-right corner) -->
+  <circle cx="380" cy="130" r="35" fill="url(#clockGradient)" stroke="#F57C00" stroke-width="2"/>
+  <circle cx="380" cy="130" r="28" fill="white" stroke="none"/>
+
+  <!-- Clock hands -->
+  <line x1="380" y1="130" x2="380" y2="115" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+  <line x1="380" y1="130" x2="392" y2="130" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="380" cy="130" r="3" fill="#333"/>
+
+  <!-- Minimalist notification bell -->
+  <circle cx="140" cy="380" r="30" fill="url(#accentGradient)" stroke="#0288D1" stroke-width="2"/>
+
+  <!-- Bell shape -->
+  <path d="M130 375 Q130 370, 135 370 L145 370 Q150 370, 150 375 L150 380 Q150 385, 145 385 L135 385 Q130 385, 130 380 Z"
+        fill="white" stroke="none"/>
+  <ellipse cx="140" cy="387" rx="3" ry="2" fill="white"/>
+
+  <!-- Small dots for visual interest -->
+  <circle cx="100" cy="100" r="4" fill="white" opacity="0.6"/>
+  <circle cx="420" cy="380" r="4" fill="white" opacity="0.6"/>
+  <circle cx="400" cy="450" r="3" fill="white" opacity="0.4"/>
+  <circle cx="80" cy="300" r="3" fill="white" opacity="0.4"/>
+</svg>

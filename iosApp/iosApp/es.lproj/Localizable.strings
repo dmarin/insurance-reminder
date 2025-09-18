@@ -1,0 +1,68 @@
+/* Spanish (Spain) Localizations */
+
+/* App */
+"app_name" = "Recordatorio de Seguros";
+"app_subtitle" = "Gestiona tus pólizas de seguro con facilidad";
+
+/* Authentication */
+"sign_in" = "Iniciar Sesión";
+"sign_up" = "Registrarse";
+"email" = "Correo Electrónico";
+"password" = "Contraseña";
+"confirm_password" = "Confirmar Contraseña";
+"continue_as_guest" = "Continuar como Invitado";
+"guest_mode_description" = "Modo invitado: Almacena datos localmente (máximo 5 pólizas)\nRegístrate para almacenamiento ilimitado en la nube";
+
+/* Insurance List */
+"insurance_reminders" = "Recordatorios de Seguros";
+"add_insurance" = "Añadir Seguro";
+"no_insurances_message" = "No hay seguros añadidos aún.\nToca + para añadir tu primer seguro.";
+"loading_insurances" = "Cargando seguros...";
+"expires" = "Expira";
+"expired" = "EXPIRADO";
+"expires_in_days" = "Expira en %d días";
+"days_remaining" = "%d días restantes";
+"policy" = "Póliza";
+
+/* Add Insurance */
+"insurance_name" = "Nombre del Seguro";
+"insurance_type" = "Tipo de Seguro";
+"expiry_date" = "Fecha de Expiración";
+"current_price" = "Precio Actual (€)";
+"insurance_company" = "Compañía de Seguros";
+"policy_number" = "Número de Póliza";
+"policy_document" = "Documento de Póliza";
+"select_pdf" = "Seleccionar PDF";
+"compare_prices" = "Comparar Precios";
+
+/* Insurance Types */
+"auto_insurance" = "Seguro de Auto";
+"home_insurance" = "Seguro de Hogar";
+"health_insurance" = "Seguro de Salud";
+"life_insurance" = "Seguro de Vida";
+"travel_insurance" = "Seguro de Viaje";
+"business_insurance" = "Seguro de Empresa";
+"pet_insurance" = "Seguro de Mascotas";
+"dental_insurance" = "Seguro Dental";
+"vision_insurance" = "Seguro de Vista";
+"other_insurance" = "Otro";
+
+/* Profile & Subscription */
+"profile" = "Perfil";
+"free_tier" = "Nivel Gratuito";
+"premium_tier" = "Nivel Premium";
+"upgrade_to_premium" = "Actualizar a Premium";
+"partner_sharing" = "Compartir con Pareja";
+"add_partner" = "Añadir Pareja";
+
+/* Common Actions */
+"cancel" = "Cancelar";
+"ok" = "Aceptar";
+"save" = "Guardar";
+"delete" = "Eliminar";
+"back" = "Atrás";
+"loading" = "Cargando...";
+
+/* Errors */
+"error" = "Error";
+"try_again" = "Intentar de nuevo";

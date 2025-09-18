@@ -1,0 +1,442 @@
+[
+  {
+    "id": "mapfre_es",
+    "name": "mapfre",
+    "displayName": "MAPFRE",
+    "logoUrl": "https://www.mapfre.com/media/logos/mapfre-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.mapfre.es",
+    "isActive": true
+  },
+  {
+    "id": "sanitas_es",
+    "name": "sanitas",
+    "displayName": "Sanitas",
+    "logoUrl": "https://www.sanitas.es/content/dam/sanitas/logos/sanitas-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.sanitas.es",
+    "isActive": true
+  },
+  {
+    "id": "mutua_madrilena_es",
+    "name": "mutua_madrilena",
+    "displayName": "Mutua Madrileña",
+    "logoUrl": "https://www.mutua.es/content/dam/mutua/logos/mutua-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH"],
+    "websiteUrl": "https://www.mutua.es",
+    "isActive": true
+  },
+  {
+    "id": "axa_es",
+    "name": "axa",
+    "displayName": "AXA",
+    "logoUrl": "https://www.axa.es/content/dam/axa/logos/axa-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.axa.es",
+    "isActive": true
+  },
+  {
+    "id": "allianz_es",
+    "name": "allianz",
+    "displayName": "Allianz",
+    "logoUrl": "https://www.allianz.es/content/dam/allianz/logos/allianz-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.allianz.es",
+    "isActive": true
+  },
+  {
+    "id": "generali_es",
+    "name": "generali",
+    "displayName": "Generali",
+    "logoUrl": "https://www.generali.es/content/dam/generali/logos/generali-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.generali.es",
+    "isActive": true
+  },
+  {
+    "id": "zurich_es",
+    "name": "zurich",
+    "displayName": "Zurich",
+    "logoUrl": "https://www.zurich.es/content/dam/zurich/logos/zurich-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.zurich.es",
+    "isActive": true
+  },
+  {
+    "id": "caser_es",
+    "name": "caser",
+    "displayName": "Caser",
+    "logoUrl": "https://www.caser.es/content/dam/caser/logos/caser-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.caser.es",
+    "isActive": true
+  },
+  {
+    "id": "dkv_es",
+    "name": "dkv",
+    "displayName": "DKV",
+    "logoUrl": "https://www.dkvseguros.com/content/dam/dkv/logos/dkv-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.dkvseguros.com",
+    "isActive": true
+  },
+  {
+    "id": "pelayo_es",
+    "name": "pelayo",
+    "displayName": "Pelayo",
+    "logoUrl": "https://www.pelayo.com/content/dam/pelayo/logos/pelayo-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "TRAVEL"],
+    "websiteUrl": "https://www.pelayo.com",
+    "isActive": true
+  },
+  {
+    "id": "reale_es",
+    "name": "reale",
+    "displayName": "Reale Seguros",
+    "logoUrl": "https://www.reale.es/content/dam/reale/logos/reale-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.reale.es",
+    "isActive": true
+  },
+  {
+    "id": "catalana_occidente_es",
+    "name": "catalana_occidente",
+    "displayName": "Catalana Occidente",
+    "logoUrl": "https://www.catalanaoccidente.com/content/dam/co/logos/co-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE", "BUSINESS"],
+    "websiteUrl": "https://www.catalanaoccidente.com",
+    "isActive": true
+  },
+  {
+    "id": "groupama_es",
+    "name": "groupama",
+    "displayName": "Groupama",
+    "logoUrl": "https://www.groupama.es/content/dam/groupama/logos/groupama-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.groupama.es",
+    "isActive": true
+  },
+  {
+    "id": "fiatc_es",
+    "name": "fiatc",
+    "displayName": "FIATC Seguros",
+    "logoUrl": "https://www.fiatc.es/content/dam/fiatc/logos/fiatc-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL", "AUTO"],
+    "websiteUrl": "https://www.fiatc.es",
+    "isActive": true
+  },
+  {
+    "id": "asisa_es",
+    "name": "asisa",
+    "displayName": "ASISA",
+    "logoUrl": "https://www.asisa.es/content/dam/asisa/logos/asisa-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.asisa.es",
+    "isActive": true
+  },
+  {
+    "id": "adeslas_es",
+    "name": "adeslas",
+    "displayName": "Adeslas",
+    "logoUrl": "https://www.adeslas.es/content/dam/adeslas/logos/adeslas-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.adeslas.es",
+    "isActive": true
+  },
+  {
+    "id": "cigna_es",
+    "name": "cigna",
+    "displayName": "Cigna",
+    "logoUrl": "https://www.cigna.es/content/dam/cigna/logos/cigna-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.cigna.es",
+    "isActive": true
+  },
+  {
+    "id": "ime_es",
+    "name": "ime",
+    "displayName": "IME Seguros",
+    "logoUrl": "https://www.imeseguros.com/content/dam/ime/logos/ime-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.imeseguros.com",
+    "isActive": true
+  },
+  {
+    "id": "hna_es",
+    "name": "hna",
+    "displayName": "HNA Seguros",
+    "logoUrl": "https://www.hna.es/content/dam/hna/logos/hna-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH", "DENTAL"],
+    "websiteUrl": "https://www.hna.es",
+    "isActive": true
+  },
+  {
+    "id": "nectar_es",
+    "name": "nectar",
+    "displayName": "Néctar Seguros",
+    "logoUrl": "https://www.nectarseguros.es/content/dam/nectar/logos/nectar-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HEALTH"],
+    "websiteUrl": "https://www.nectarseguros.es",
+    "isActive": true
+  },
+  {
+    "id": "previsora_bilbaina_es",
+    "name": "previsora_bilbaina",
+    "displayName": "Previsora Bilbaína",
+    "logoUrl": "https://www.previsorabilbaina.com/content/dam/pb/logos/pb-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.previsorabilbaina.com",
+    "isActive": true
+  },
+  {
+    "id": "seguros_bilbao_es",
+    "name": "seguros_bilbao",
+    "displayName": "Seguros Bilbao",
+    "logoUrl": "https://www.segurosbilbao.com/content/dam/sb/logos/sb-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "LIFE"],
+    "websiteUrl": "https://www.segurosbilbao.com",
+    "isActive": true
+  },
+  {
+    "id": "bbva_seguros_es",
+    "name": "bbva_seguros",
+    "displayName": "BBVA Seguros",
+    "logoUrl": "https://www.bbvaseguros.es/content/dam/bbva/logos/bbva-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.bbvaseguros.es",
+    "isActive": true
+  },
+  {
+    "id": "banco_sabadell_seguros_es",
+    "name": "banco_sabadell_seguros",
+    "displayName": "Banco Sabadell Seguros",
+    "logoUrl": "https://www.bancosabadell.com/content/dam/sabadell/logos/sabadell-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.bancosabadell.com/seguros",
+    "isActive": true
+  },
+  {
+    "id": "caixabank_seguros_es",
+    "name": "caixabank_seguros",
+    "displayName": "CaixaBank Seguros",
+    "logoUrl": "https://www.caixabank.es/content/dam/caixabank/logos/caixabank-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.caixabank.es/seguros",
+    "isActive": true
+  },
+  {
+    "id": "bankinter_seguros_es",
+    "name": "bankinter_seguros",
+    "displayName": "Bankinter Seguros",
+    "logoUrl": "https://www.bankinter.com/content/dam/bankinter/logos/bankinter-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "LIFE"],
+    "websiteUrl": "https://www.bankinter.com/seguros",
+    "isActive": true
+  },
+  {
+    "id": "helvetia_es",
+    "name": "helvetia",
+    "displayName": "Helvetia Seguros",
+    "logoUrl": "https://www.helvetia.es/content/dam/helvetia/logos/helvetia-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME", "HEALTH", "LIFE"],
+    "websiteUrl": "https://www.helvetia.es",
+    "isActive": true
+  },
+  {
+    "id": "intl_es",
+    "name": "intl",
+    "displayName": "INTL Seguros",
+    "logoUrl": "https://www.intlseguros.es/content/dam/intl/logos/intl-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME"],
+    "websiteUrl": "https://www.intlseguros.es",
+    "isActive": true
+  },
+  {
+    "id": "racc_es",
+    "name": "racc",
+    "displayName": "RACC Seguros",
+    "logoUrl": "https://www.racc.es/content/dam/racc/logos/racc-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "TRAVEL"],
+    "websiteUrl": "https://www.racc.es/seguros",
+    "isActive": true
+  },
+  {
+    "id": "race_es",
+    "name": "race",
+    "displayName": "RACE Seguros",
+    "logoUrl": "https://www.race.es/content/dam/race/logos/race-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "TRAVEL"],
+    "websiteUrl": "https://www.race.es/seguros",
+    "isActive": true
+  },
+  {
+    "id": "verti_es",
+    "name": "verti",
+    "displayName": "Verti Seguros",
+    "logoUrl": "https://www.verti.es/content/dam/verti/logos/verti-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME"],
+    "websiteUrl": "https://www.verti.es",
+    "isActive": true
+  },
+  {
+    "id": "linea_directa_es",
+    "name": "linea_directa",
+    "displayName": "Línea Directa",
+    "logoUrl": "https://www.lineadirecta.com/content/dam/ld/logos/ld-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH"],
+    "websiteUrl": "https://www.lineadirecta.com",
+    "isActive": true
+  },
+  {
+    "id": "genesis_es",
+    "name": "genesis",
+    "displayName": "Génesis Seguros",
+    "logoUrl": "https://www.genesisseguros.es/content/dam/genesis/logos/genesis-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["AUTO", "HOME"],
+    "websiteUrl": "https://www.genesisseguros.es",
+    "isActive": true
+  },
+  {
+    "id": "ocaso_es",
+    "name": "ocaso",
+    "displayName": "Ocaso Seguros",
+    "logoUrl": "https://www.ocasoseguros.es/content/dam/ocaso/logos/ocaso-logo.svg",
+    "country": "ES",
+    "supportedTypes": ["HOME", "LIFE"],
+    "websiteUrl": "https://www.ocasoseguros.es",
+    "isActive": true
+  },
+  {
+    "id": "state_farm_us",
+    "name": "state_farm",
+    "displayName": "State Farm",
+    "logoUrl": "https://www.statefarm.com/content/dam/sf/logos/statefarm-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "HOME", "LIFE", "HEALTH"],
+    "websiteUrl": "https://www.statefarm.com",
+    "isActive": true
+  },
+  {
+    "id": "geico_us",
+    "name": "geico",
+    "displayName": "GEICO",
+    "logoUrl": "https://www.geico.com/content/dam/geico/logos/geico-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "TRAVEL"],
+    "websiteUrl": "https://www.geico.com",
+    "isActive": true
+  },
+  {
+    "id": "progressive_us",
+    "name": "progressive",
+    "displayName": "Progressive",
+    "logoUrl": "https://www.progressive.com/content/dam/progressive/logos/progressive-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "TRAVEL"],
+    "websiteUrl": "https://www.progressive.com",
+    "isActive": true
+  },
+  {
+    "id": "allstate_us",
+    "name": "allstate",
+    "displayName": "Allstate",
+    "logoUrl": "https://www.allstate.com/content/dam/allstate/logos/allstate-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "HOME", "LIFE"],
+    "websiteUrl": "https://www.allstate.com",
+    "isActive": true
+  },
+  {
+    "id": "farmers_us",
+    "name": "farmers",
+    "displayName": "Farmers",
+    "logoUrl": "https://www.farmers.com/content/dam/farmers/logos/farmers-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "HOME", "LIFE"],
+    "websiteUrl": "https://www.farmers.com",
+    "isActive": true
+  },
+  {
+    "id": "aviva_uk",
+    "name": "aviva",
+    "displayName": "Aviva",
+    "logoUrl": "https://www.aviva.co.uk/content/dam/aviva/logos/aviva-logo.svg",
+    "country": "UK",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.aviva.co.uk",
+    "isActive": true
+  },
+  {
+    "id": "admiral_uk",
+    "name": "admiral",
+    "displayName": "Admiral",
+    "logoUrl": "https://www.admiral.com/content/dam/admiral/logos/admiral-logo.svg",
+    "country": "UK",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "TRAVEL"],
+    "websiteUrl": "https://www.admiral.com",
+    "isActive": true
+  },
+  {
+    "id": "direct_line_uk",
+    "name": "direct_line",
+    "displayName": "Direct Line",
+    "logoUrl": "https://www.directline.com/content/dam/directline/logos/directline-logo.svg",
+    "country": "UK",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "TRAVEL"],
+    "websiteUrl": "https://www.directline.com",
+    "isActive": true
+  },
+  {
+    "id": "aig_global",
+    "name": "aig",
+    "displayName": "AIG",
+    "logoUrl": "https://www.aig.com/content/dam/aig/logos/aig-logo.svg",
+    "country": "GLOBAL",
+    "supportedTypes": ["AUTO", "MOTORCYCLE", "HOME", "HEALTH", "LIFE", "TRAVEL"],
+    "websiteUrl": "https://www.aig.com",
+    "isActive": true
+  },
+  {
+    "id": "liberty_mutual_us",
+    "name": "liberty_mutual",
+    "displayName": "Liberty Mutual",
+    "logoUrl": "https://www.libertymutual.com/content/dam/libertymutual/logos/libertymutual-logo.svg",
+    "country": "US",
+    "supportedTypes": ["AUTO", "HOME", "LIFE"],
+    "websiteUrl": "https://www.libertymutual.com",
+    "isActive": true
+  }
+]

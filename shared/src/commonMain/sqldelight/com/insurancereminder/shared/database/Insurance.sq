@@ -1,0 +1,54 @@
+CREATE TABLE Insurance (
+    id TEXT PRIMARY KEY NOT NULL,
+    type TEXT NOT NULL,
+    name TEXT NOT NULL,
+    expiryDate TEXT NOT NULL,
+    reminderDaysBefore INTEGER NOT NULL DEFAULT 30,
+    isActive INTEGER NOT NULL DEFAULT 1,
+    currentPrice REAL,
+    currency TEXT NOT NULL DEFAULT 'EUR',
+    policyFileUrl TEXT,
+    policyFileName TEXT,
+    companyName TEXT,
+    policyNumber TEXT,
+    userId TEXT,
+    sharedWithUserId TEXT,
+    createdAt TEXT,
+    updatedAt TEXT
+);
+
+selectAll:
+SELECT * FROM Insurance WHERE isActive = 1 ORDER BY expiryDate;
+
+selectById:
+SELECT * FROM Insurance WHERE id = ?;
+
+selectByUserId:
+SELECT * FROM Insurance WHERE userId = ? AND isActive = 1 ORDER BY expiryDate;
+
+insertInsurance:
+INSERT INTO Insurance(id, type, name, expiryDate, reminderDaysBefore, isActive, currentPrice, currency, policyFileUrl, policyFileName, companyName, policyNumber, userId, sharedWithUserId, createdAt, updatedAt)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateInsurance:
+UPDATE Insurance SET
+    type = ?,
+    name = ?,
+    expiryDate = ?,
+    reminderDaysBefore = ?,
+    isActive = ?,
+    currentPrice = ?,
+    currency = ?,
+    policyFileUrl = ?,
+    policyFileName = ?,
+    companyName = ?,
+    policyNumber = ?,
+    sharedWithUserId = ?,
+    updatedAt = ?
+WHERE id = ?;
+
+deleteInsurance:
+UPDATE Insurance SET isActive = 0, updatedAt = ? WHERE id = ?;
+
+deleteAllForUser:
+DELETE FROM Insurance WHERE userId = ?;

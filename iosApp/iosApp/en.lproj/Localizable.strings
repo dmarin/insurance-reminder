@@ -1,0 +1,68 @@
+/* English Localizations */
+
+/* App */
+"app_name" = "Insurance Reminder";
+"app_subtitle" = "Manage your insurance policies with ease";
+
+/* Authentication */
+"sign_in" = "Sign In";
+"sign_up" = "Sign Up";
+"email" = "Email";
+"password" = "Password";
+"confirm_password" = "Confirm Password";
+"continue_as_guest" = "Continue as Guest";
+"guest_mode_description" = "Guest mode: Store data locally (max 5 policies)\nSign up for unlimited cloud storage";
+
+/* Insurance List */
+"insurance_reminders" = "Insurance Reminders";
+"add_insurance" = "Add Insurance";
+"no_insurances_message" = "No insurances added yet.\nTap + to add your first insurance.";
+"loading_insurances" = "Loading insurances...";
+"expires" = "Expires";
+"expired" = "EXPIRED";
+"expires_in_days" = "Expires in %d days";
+"days_remaining" = "%d days remaining";
+"policy" = "Policy";
+
+/* Add Insurance */
+"insurance_name" = "Insurance Name";
+"insurance_type" = "Insurance Type";
+"expiry_date" = "Expiry Date";
+"current_price" = "Current Price (€)";
+"insurance_company" = "Insurance Company";
+"policy_number" = "Policy Number";
+"policy_document" = "Policy Document";
+"select_pdf" = "Select PDF";
+"compare_prices" = "Compare Prices";
+
+/* Insurance Types */
+"auto_insurance" = "Auto Insurance";
+"home_insurance" = "Home Insurance";
+"health_insurance" = "Health Insurance";
+"life_insurance" = "Life Insurance";
+"travel_insurance" = "Travel Insurance";
+"business_insurance" = "Business Insurance";
+"pet_insurance" = "Pet Insurance";
+"dental_insurance" = "Dental Insurance";
+"vision_insurance" = "Vision Insurance";
+"other_insurance" = "Other";
+
+/* Profile & Subscription */
+"profile" = "Profile";
+"free_tier" = "Free Tier";
+"premium_tier" = "Premium Tier";
+"upgrade_to_premium" = "Upgrade to Premium";
+"partner_sharing" = "Partner Sharing";
+"add_partner" = "Add Partner";
+
+/* Common Actions */
+"cancel" = "Cancel";
+"ok" = "OK";
+"save" = "Save";
+"delete" = "Delete";
+"back" = "Back";
+"loading" = "Loading...";
+
+/* Errors */
+"error" = "Error";
+"try_again" = "Try Again";

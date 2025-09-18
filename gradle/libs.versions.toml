@@ -1,0 +1,95 @@
+[versions]
+espresso-core = "3.5.1"
+junit = "4.13.2"
+junit-version = "1.1.5"
+kotlin = "1.9.22"
+android-gradle = "8.2.2"
+compose = "1.5.11"
+compose-bom = "2024.02.00"
+firebase-bom = "32.7.4"
+sqldelight = "2.0.1"
+coroutines = "1.7.3"
+serialization = "1.6.2"
+datetime = "0.5.0"
+gitlive-firebase = "1.11.1"
+navigation-compose = "2.7.6"
+lifecycle = "2.7.0"
+activity-compose = "1.8.2"
+work-manager = "2.9.0"
+material-dialogs = "0.9.0"
+billing = "6.1.0"
+pdf-viewer = "3.2.0-beta.1"
+coil = "2.5.0"
+compose-calendar = "2.4.1"
+
+[libraries]
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-version" }
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle" }
+compose-gradle-plugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "compose" }
+
+# Kotlin libraries
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime" }
+
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage-ktx" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+
+# GitLive Firebase (for multiplatform)
+gitlive-firebase-common = { group = "dev.gitlive", name = "firebase-common", version.ref = "gitlive-firebase" }
+gitlive-firebase-firestore = { group = "dev.gitlive", name = "firebase-firestore", version.ref = "gitlive-firebase" }
+gitlive-firebase-auth = { group = "dev.gitlive", name = "firebase-auth", version.ref = "gitlive-firebase" }
+gitlive-firebase-storage = { group = "dev.gitlive", name = "firebase-storage", version.ref = "gitlive-firebase" }
+
+# SQLDelight
+sqldelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqldelight" }
+sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-sqlite-driver = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
+sqldelight-native-driver = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+sqldelight-web-worker-driver = { group = "app.cash.sqldelight", name = "web-worker-driver", version.ref = "sqldelight" }
+
+# Android Compose
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
+# Android libraries
+androidx-core-ktx = "androidx.core:core-ktx:1.12.0"
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-manager" }
+
+# Additional libraries
+material-dialogs-datetime = { group = "io.github.vanpra.compose-material-dialogs", name = "datetime", version.ref = "material-dialogs" }
+billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
+pdf-viewer = { group = "com.github.barteksc", name = "android-pdf-viewer", version.ref = "pdf-viewer" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+compose-calendar = { group = "io.github.boguszpawlowski.composecalendar", name = "composecalendar", version.ref = "compose-calendar" }
+compose-calendar-kotlinx-datetime = { group = "io.github.boguszpawlowski.composecalendar", name = "kotlinx-datetime", version.ref = "compose-calendar" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+google-services = { id = "com.google.gms.google-services", version = "4.4.0" }
+version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version = "0.8.4" }

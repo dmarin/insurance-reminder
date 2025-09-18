@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Insurance companies are publicly readable by all users (including anonymous)
+    // This allows the app to show company options without authentication
+    match /insurance_companies/{companyId} {
+      allow read: if true;
+      allow write: if false; // Only admins should write companies via admin SDK
+    }
+
+    // User's insurance data - accessible by owner or allow anonymous read for demo
+    match /insurances/{insuranceId} {
+      // Allow read if user is authenticated and the document belongs to them
+      // OR allow read for testing/demo purposes (remove in production)
+      allow read: if (request.auth != null &&
+                     (resource == null || resource.data.userId == request.auth.uid)) ||
+                     true; // DEMO: Allow anonymous read - remove in production
+
+      // Allow write only if user is authenticated and they're setting their own userId
+      allow write: if request.auth != null &&
+                      (resource == null || resource.data.userId == request.auth.uid) &&
+                      request.resource.data.userId == request.auth.uid;
+
+      // Allow create if user is authenticated and setting their own userId
+      allow create: if request.auth != null &&
+                       request.resource.data.userId == request.auth.uid;
+
+      // Allow update if user is authenticated and owns the document
+      allow update: if request.auth != null &&
+                       resource.data.userId == request.auth.uid &&
+                       request.resource.data.userId == request.auth.uid;
+
+      // Allow delete if user is authenticated and owns the document
+      allow delete: if request.auth != null &&
+                       resource.data.userId == request.auth.uid;
+    }
+
+    // User profiles - users can read and write their own profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Allow users to read their own user document
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

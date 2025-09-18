@@ -1,0 +1,30 @@
+CREATE TABLE User (
+    id TEXT PRIMARY KEY NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    displayName TEXT,
+    subscriptionTier TEXT NOT NULL DEFAULT 'FREE',
+    partnerId TEXT,
+    createdAt TEXT,
+    subscriptionExpiresAt TEXT
+);
+
+selectById:
+SELECT * FROM User WHERE id = ?;
+
+selectByEmail:
+SELECT * FROM User WHERE email = ?;
+
+insertUser:
+INSERT INTO User(id, email, displayName, subscriptionTier, partnerId, createdAt, subscriptionExpiresAt)
+VALUES(?, ?, ?, ?, ?, ?, ?);
+
+updateUser:
+UPDATE User SET
+    displayName = ?,
+    subscriptionTier = ?,
+    partnerId = ?,
+    subscriptionExpiresAt = ?
+WHERE id = ?;
+
+deleteUser:
+DELETE FROM User WHERE id = ?;

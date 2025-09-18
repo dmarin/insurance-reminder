@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Insurance Reminder</string>
+
+    <!-- Authentication -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="continue_as_guest">Continue as Guest (Local Storage)</string>
+    <string name="guest_mode_description">Guest mode: Store data locally (max 5 policies)\nSign up for unlimited cloud storage and sharing</string>
+    <string name="already_have_account">Already have an account? Sign In</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="passwords_dont_match">Passwords don\'t match</string>
+    <string name="sign_out">Sign Out</string>
+
+    <!-- App Description -->
+    <string name="app_subtitle">Manage your insurance policies with ease</string>
+
+    <!-- Insurance List -->
+    <string name="insurance_reminders">Insurance Reminders</string>
+    <string name="add_insurance">Add Insurance</string>
+    <string name="delete_insurance">Delete Insurance</string>
+    <string name="profile">Profile</string>
+    <string name="no_insurances_message">No insurances added yet.\nTap + to add your first insurance.</string>
+    <string name="expires">Expires</string>
+    <string name="expired">EXPIRED</string>
+    <string name="expires_in_days">Expires in %d days</string>
+    <string name="days_remaining">%d days remaining</string>
+    <string name="policy">Policy</string>
+    <string name="has_attachment">Has attachment</string>
+
+    <!-- Add Insurance -->
+    <string name="insurance_name">Insurance Name</string>
+    <string name="insurance_name_hint">e.g., Auto Insurance - Honda Civic</string>
+    <string name="insurance_type">Insurance Type</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="select_expiry_date">Select expiry date</string>
+    <string name="select_date">Select Date</string>
+    <string name="reminder_days_before">Reminder Days Before</string>
+    <string name="current_price">Current Price (€)</string>
+    <string name="insurance_company">Insurance Company</string>
+    <string name="company_name_hint">e.g., Mapfre, Sanitas</string>
+    <string name="policy_number">Policy Number</string>
+    <string name="optional">Optional</string>
+    <string name="policy_document">Policy Document</string>
+    <string name="select_pdf">Select PDF</string>
+    <string name="selected_file">Selected: %s</string>
+    <string name="compare_prices">Compare Prices</string>
+    <string name="compare_prices_description">Find better deals before your policy expires</string>
+    <string name="back">Back</string>
+
+    <!-- Insurance Types -->
+    <string name="auto_insurance">Auto Insurance</string>
+    <string name="home_insurance">Home Insurance</string>
+    <string name="health_insurance">Health Insurance</string>
+    <string name="life_insurance">Life Insurance</string>
+    <string name="travel_insurance">Travel Insurance</string>
+    <string name="business_insurance">Business Insurance</string>
+    <string name="pet_insurance">Pet Insurance</string>
+    <string name="dental_insurance">Dental Insurance</string>
+    <string name="vision_insurance">Vision Insurance</string>
+    <string name="other_insurance">Other</string>
+
+    <!-- Profile & Subscription -->
+    <string name="profile_subscription">Profile &amp; Subscription</string>
+    <string name="account_information">Account Information</string>
+    <string name="subscription">Subscription</string>
+    <string name="premium_features_unlocked">✓ Premium Features Unlocked</string>
+    <string name="guest_mode_local_only">Guest Mode - Local Storage Only</string>
+
+    <!-- Subscription Comparison -->
+    <string name="subscription_comparison">Subscription Comparison</string>
+    <string name="free_tier">Free Tier</string>
+    <string name="premium_tier">Premium Tier</string>
+    <string name="local_storage_only">• Local storage only</string>
+    <string name="max_5_policies">• Maximum 5 insurance policies</string>
+    <string name="basic_notifications">• Basic notifications</string>
+    <string name="no_file_uploads">• No file uploads</string>
+    <string name="no_sharing_features">• No sharing features</string>
+    <string name="cloud_storage_sync">• Cloud storage and sync</string>
+    <string name="unlimited_policies">• Unlimited insurance policies</string>
+    <string name="advanced_notifications">• Advanced notifications</string>
+    <string name="pdf_file_uploads">• PDF file uploads</string>
+    <string name="share_with_partner">• Share with partner</string>
+    <string name="cross_device_sync">• Cross-device sync</string>
+    <string name="data_backup_export">• Data backup and export</string>
+    <string name="upgrade_to_premium">Upgrade to Premium</string>
+
+    <!-- Partner Sharing -->
+    <string name="partner_sharing">Partner Sharing</string>
+    <string name="sharing_enabled">✓ Sharing enabled with partner</string>
+    <string name="sharing_description">Share your insurance policies with your partner</string>
+    <string name="add_partner">Add Partner</string>
+    <string name="partner_email_description">Enter your partner\'s email address to share your insurance policies:</string>
+    <string name="partner_email">Partner Email</string>
+    <string name="premium_required">Premium subscription required</string>
+
+    <!-- Cloud Features -->
+    <string name="cloud_features">Cloud Features</string>
+    <string name="auto_sync_cloud">• All data syncs automatically to the cloud</string>
+    <string name="multi_device_access">• Access from multiple devices</string>
+    <string name="automatic_backups">• Automatic backups</string>
+    <string name="upload_store_pdfs">• Upload and store policy PDFs</string>
+
+    <!-- Common Actions -->
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="share">Share</string>
+    <string name="export">Export</string>
+    <string name="import_data">Import</string>
+
+    <!-- Date Picker -->
+    <string name="pick_expiry_date">Pick expiry date</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_insurances">Error loading insurances: %s</string>
+    <string name="error_adding_insurance">Error adding insurance: %s</string>
+    <string name="error_updating_insurance">Error updating insurance: %s</string>
+    <string name="error_deleting_insurance">Error deleting insurance: %s</string>
+    <string name="partner_not_found">Partner not found</string>
+    <string name="current_user_not_found">Current user not found</string>
+
+    <!-- Notifications -->
+    <string name="insurance_expired">Insurance Expired!</string>
+    <string name="insurance_expires_today">Insurance Expires Today!</string>
+    <string name="insurance_expiring_soon">Insurance Expiring Soon</string>
+    <string name="insurance_expired_days_ago" formatted="false">%s has expired %d days ago</string>
+    <string name="insurance_expires_today_text">%s expires today</string>
+    <string name="insurance_expires_in_days_text" formatted="false">%s expires in %d days</string>
+</resources>

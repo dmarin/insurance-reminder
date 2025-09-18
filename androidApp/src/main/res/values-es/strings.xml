@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recordatorio de Seguros</string>
+
+    <!-- Authentication -->
+    <string name="sign_in">Iniciar Sesión</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="hide_password">Ocultar contraseña</string>
+    <string name="continue_as_guest">Continuar como Invitado (Almacenamiento Local)</string>
+    <string name="guest_mode_description">Modo invitado: Almacena datos localmente (máximo 5 pólizas)\nRegístrate para almacenamiento ilimitado en la nube y compartir</string>
+    <string name="already_have_account">¿Ya tienes una cuenta? Iniciar Sesión</string>
+    <string name="dont_have_account">¿No tienes una cuenta? Registrarse</string>
+    <string name="passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="sign_out">Cerrar Sesión</string>
+
+    <!-- App Description -->
+    <string name="app_subtitle">Gestiona tus pólizas de seguro con facilidad</string>
+
+    <!-- Insurance List -->
+    <string name="insurance_reminders">Recordatorios de Seguros</string>
+    <string name="add_insurance">Añadir Seguro</string>
+    <string name="delete_insurance">Eliminar Seguro</string>
+    <string name="profile">Perfil</string>
+    <string name="no_insurances_message">No hay seguros añadidos aún.\nToca + para añadir tu primer seguro.</string>
+    <string name="expires">Expira</string>
+    <string name="expired">EXPIRADO</string>
+    <string name="expires_in_days">Expira en %d días</string>
+    <string name="days_remaining">%d días restantes</string>
+    <string name="policy">Póliza</string>
+    <string name="has_attachment">Tiene adjunto</string>
+
+    <!-- Add Insurance -->
+    <string name="insurance_name">Nombre del Seguro</string>
+    <string name="insurance_name_hint">ej. Seguro de Auto - Honda Civic</string>
+    <string name="insurance_type">Tipo de Seguro</string>
+    <string name="expiry_date">Fecha de Expiración</string>
+    <string name="select_expiry_date">Seleccionar fecha de expiración</string>
+    <string name="select_date">Seleccionar Fecha</string>
+    <string name="reminder_days_before">Días de Aviso Antes</string>
+    <string name="current_price">Precio Actual (€)</string>
+    <string name="insurance_company">Compañía de Seguros</string>
+    <string name="company_name_hint">ej. Mapfre, Sanitas</string>
+    <string name="policy_number">Número de Póliza</string>
+    <string name="optional">Opcional</string>
+    <string name="policy_document">Documento de Póliza</string>
+    <string name="select_pdf">Seleccionar PDF</string>
+    <string name="selected_file">Seleccionado: %s</string>
+    <string name="compare_prices">Comparar Precios</string>
+    <string name="compare_prices_description">Encuentra mejores ofertas antes de que expire tu póliza</string>
+    <string name="back">Atrás</string>
+
+    <!-- Insurance Types -->
+    <string name="auto_insurance">Seguro de Auto</string>
+    <string name="home_insurance">Seguro de Hogar</string>
+    <string name="health_insurance">Seguro de Salud</string>
+    <string name="life_insurance">Seguro de Vida</string>
+    <string name="travel_insurance">Seguro de Viaje</string>
+    <string name="business_insurance">Seguro de Empresa</string>
+    <string name="pet_insurance">Seguro de Mascotas</string>
+    <string name="dental_insurance">Seguro Dental</string>
+    <string name="vision_insurance">Seguro de Vista</string>
+    <string name="other_insurance">Otro</string>
+
+    <!-- Profile & Subscription -->
+    <string name="profile_subscription">Perfil y Suscripción</string>
+    <string name="account_information">Información de la Cuenta</string>
+    <string name="subscription">Suscripción</string>
+    <string name="premium_features_unlocked">✓ Funciones Premium Desbloqueadas</string>
+    <string name="guest_mode_local_only">Modo Invitado - Solo Almacenamiento Local</string>
+
+    <!-- Subscription Comparison -->
+    <string name="subscription_comparison">Comparación de Suscripciones</string>
+    <string name="free_tier">Nivel Gratuito</string>
+    <string name="premium_tier">Nivel Premium</string>
+    <string name="local_storage_only">• Solo almacenamiento local</string>
+    <string name="max_5_policies">• Máximo 5 pólizas de seguro</string>
+    <string name="basic_notifications">• Notificaciones básicas</string>
+    <string name="no_file_uploads">• Sin subida de archivos</string>
+    <string name="no_sharing_features">• Sin funciones de compartir</string>
+    <string name="cloud_storage_sync">• Almacenamiento en la nube y sincronización</string>
+    <string name="unlimited_policies">• Pólizas de seguro ilimitadas</string>
+    <string name="advanced_notifications">• Notificaciones avanzadas</string>
+    <string name="pdf_file_uploads">• Subida de archivos PDF</string>
+    <string name="share_with_partner">• Compartir con pareja</string>
+    <string name="cross_device_sync">• Sincronización entre dispositivos</string>
+    <string name="data_backup_export">• Copia de seguridad y exportación de datos</string>
+    <string name="upgrade_to_premium">Actualizar a Premium</string>
+
+    <!-- Partner Sharing -->
+    <string name="partner_sharing">Compartir con Pareja</string>
+    <string name="sharing_enabled">✓ Compartir habilitado con pareja</string>
+    <string name="sharing_description">Comparte tus pólizas de seguro con tu pareja</string>
+    <string name="add_partner">Añadir Pareja</string>
+    <string name="partner_email_description">Introduce la dirección de correo de tu pareja para compartir tus pólizas de seguro:</string>
+    <string name="partner_email">Correo de la Pareja</string>
+    <string name="premium_required">Se requiere suscripción Premium</string>
+
+    <!-- Cloud Features -->
+    <string name="cloud_features">Funciones en la Nube</string>
+    <string name="auto_sync_cloud">• Todos los datos se sincronizan automáticamente en la nube</string>
+    <string name="multi_device_access">• Acceso desde múltiples dispositivos</string>
+    <string name="automatic_backups">• Copias de seguridad automáticas</string>
+    <string name="upload_store_pdfs">• Subir y almacenar PDFs de pólizas</string>
+
+    <!-- Common Actions -->
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Aceptar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="share">Compartir</string>
+    <string name="export">Exportar</string>
+    <string name="import_data">Importar</string>
+
+    <!-- Date Picker -->
+    <string name="pick_expiry_date">Seleccionar fecha de expiración</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_insurances">Error al cargar seguros: %s</string>
+    <string name="error_adding_insurance">Error al añadir seguro: %s</string>
+    <string name="error_updating_insurance">Error al actualizar seguro: %s</string>
+    <string name="error_deleting_insurance">Error al eliminar seguro: %s</string>
+    <string name="partner_not_found">Pareja no encontrada</string>
+    <string name="current_user_not_found">Usuario actual no encontrado</string>
+
+    <!-- Notifications -->
+    <string name="insurance_expired">¡Seguro Expirado!</string>
+    <string name="insurance_expires_today">¡El Seguro Expira Hoy!</string>
+    <string name="insurance_expiring_soon">Seguro Expirando Pronto</string>
+    <string name="insurance_expired_days_ago" formatted="false">%s ha expirado hace %d días</string>
+    <string name="insurance_expires_today_text">%s expira hoy</string>
+    <string name="insurance_expires_in_days_text" formatted="false">%s expira en %d días</string>
+</resources>

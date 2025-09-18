@@ -1,0 +1,44 @@
+<svg width="432" height="432" viewBox="0 0 432 432" xmlns="http://www.w3.org/2000/svg">
+  <!-- Foreground layer for adaptive icon (safe area 72dp margin) -->
+  <defs>
+    <!-- Shield gradient - main focus -->
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#56CCF2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2F80ED;stop-opacity:1" />
+    </linearGradient>
+    <!-- Clock gradient -->
+    <linearGradient id="clockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE259;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA726;stop-opacity:1" />
+    </linearGradient>
+    <!-- Accent gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FACFE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00F2FE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Central protection shield -->
+  <path d="M216 90 C245 90, 300 100, 300 130 L300 240 C300 300, 265 340, 216 355 C167 340, 132 300, 132 240 L132 130 C132 100, 187 90, 216 90 Z"
+        fill="url(#shieldGradient)" stroke="#1976D2" stroke-width="2"/>
+
+  <!-- Clean checkmark -->
+  <path d="M175 215 L200 240 L265 175" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Modern clock icon (top-right corner within safe area) -->
+  <circle cx="320" cy="120" r="28" fill="url(#clockGradient)" stroke="#F57C00" stroke-width="2"/>
+  <circle cx="320" cy="120" r="22" fill="white" stroke="none"/>
+
+  <!-- Clock hands -->
+  <line x1="320" y1="120" x2="320" y2="108" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="320" y1="120" x2="330" y2="120" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="320" cy="120" r="2.5" fill="#333"/>
+
+  <!-- Minimalist notification bell (bottom-left within safe area) -->
+  <circle cx="120" cy="320" r="25" fill="url(#accentGradient)" stroke="#0288D1" stroke-width="2"/>
+
+  <!-- Bell shape -->
+  <path d="M112 316 Q112 312, 116 312 L124 312 Q128 312, 128 316 L128 320 Q128 324, 124 324 L116 324 Q112 324, 112 320 Z"
+        fill="white" stroke="none"/>
+  <ellipse cx="120" cy="326" rx="2.5" ry="1.5" fill="white"/>
+</svg>
