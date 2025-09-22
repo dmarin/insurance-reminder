@@ -6,6 +6,8 @@ import com.insurancereminder.shared.repository.AuthRepository
 import com.insurancereminder.shared.repository.InsuranceRepository
 import com.insurancereminder.shared.repository.InsuranceCompanyRepository
 import com.insurancereminder.shared.repository.LocalInsuranceRepository
+import com.insurancereminder.shared.repository.MockLocalInsuranceRepository
+import com.insurancereminder.shared.repository.SmartInsuranceRepository
 import com.insurancereminder.shared.repository.UnifiedInsuranceRepository
 import com.insurancereminder.shared.service.ComparisonService
 import com.insurancereminder.shared.service.InsuranceCompanyService
@@ -31,10 +33,14 @@ class SharedModule {
         InsuranceRepository(Firebase.firestore)
     }
 
-    // Note: For now using cloud repository until we set up local database properly
-    // TODO: Implement proper UnifiedInsuranceRepository with local database
+    private val localInsuranceRepository by lazy {
+        // For now, create a mock local repository since we don't have SQLDelight set up
+        MockLocalInsuranceRepository()
+    }
+
+    // Use smart repository that switches between cloud and local based on auth state
     private val insuranceRepository by lazy {
-        cloudInsuranceRepository
+        SmartInsuranceRepository(cloudInsuranceRepository, localInsuranceRepository, authRepository)
     }
 
     private val insuranceCompanyRepository by lazy {

@@ -172,8 +172,11 @@ fun InsuranceListView(
     onAddInsurance: () -> Unit,
     onProfile: () -> Unit
 ) {
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var insuranceToDelete by remember { mutableStateOf<SampleInsurance?>(null) }
+
     // Sample insurance data for demonstration
-    val sampleInsurances = remember {
+    var sampleInsurances by remember { mutableStateOf(
         listOf(
             SampleInsurance(
                 id = "1",
@@ -209,7 +212,7 @@ fun InsuranceListView(
                 status = "ACTIVE"
             )
         )
-    }
+    )}
 
     val groupedInsurances = remember(sampleInsurances) {
         sampleInsurances.groupBy { insurance ->
@@ -267,9 +270,77 @@ fun InsuranceListView(
                             insurance = insurance,
                             onEdit = { /* Edit action */ },
                             onRenew = { /* Renew action */ },
-                            onDelete = { /* Delete action */ }
+                            onDelete = {
+                                insuranceToDelete = insurance
+                                showDeleteDialog = true
+                            }
                         )
                     }
+                }
+            }
+        }
+    }
+
+    // Delete confirmation dialog
+    if (showDeleteDialog && insuranceToDelete != null) {
+        Div(attrs = {
+            style {
+                position(Position.Fixed)
+                top(0.px)
+                left(0.px)
+                width(100.percent)
+                height(100.percent)
+                backgroundColor(Color("rgba(0, 0, 0, 0.5)"))
+                display(DisplayStyle.Flex)
+                alignItems(AlignItems.Center)
+                justifyContent(JustifyContent.Center)
+                zIndex(1000)
+            }
+        }) {
+            Div(attrs = {
+                style {
+                    backgroundColor(Color("var(--color-surface)"))
+                    padding(24.px)
+                    borderRadius(12.px)
+                    maxWidth(400.px)
+                    margin(20.px)
+                    boxShadow("0 4px 16px rgba(0, 0, 0, 0.2)")
+                }
+            }) {
+                H3 { Text("Delete Insurance") }
+                P { Text("Are you sure you want to delete ${insuranceToDelete?.name}? This action cannot be undone.") }
+                Div(attrs = {
+                    style {
+                        display(DisplayStyle.Flex)
+                        gap(12.px)
+                        marginTop(20.px)
+                        justifyContent(JustifyContent.FlexEnd)
+                    }
+                }) {
+                    Button(attrs = {
+                        classes(AppStyles.secondaryButton)
+                        onClick {
+                            showDeleteDialog = false
+                            insuranceToDelete = null
+                        }
+                    }) { Text("Cancel") }
+                    Button(attrs = {
+                        style {
+                            backgroundColor(Color("var(--color-error)"))
+                            color(Color("white"))
+                            border(0.px)
+                            padding(8.px, 16.px)
+                            borderRadius(4.px)
+                            cursor("pointer")
+                        }
+                        onClick {
+                            insuranceToDelete?.let { insurance ->
+                                sampleInsurances = sampleInsurances.filter { it.id != insurance.id }
+                            }
+                            showDeleteDialog = false
+                            insuranceToDelete = null
+                        }
+                    }) { Text("Delete") }
                 }
             }
         }

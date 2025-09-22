@@ -151,6 +151,16 @@ fun AuthScreen(
             )
         }
 
+        // Forgot password button (only in sign-in mode)
+        if (!loginFormState.isSignUpMode) {
+            TextButton(
+                onClick = { viewModel.sendPasswordResetEmail() },
+                enabled = loginFormState.email.isNotEmpty() && loginFormState.isEmailValid
+            ) {
+                Text("Forgot Password?")
+            }
+        }
+
         Spacer(modifier = Modifier.height(32.dp))
 
         // Guest mode option
@@ -169,6 +179,21 @@ fun AuthScreen(
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+
+        // Success message
+        authState.successMessage?.let { successMessage ->
+            Spacer(modifier = Modifier.height(16.dp))
+            Card(
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Text(
+                    text = successMessage,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
 
         // Error message
         authState.error?.let { errorMessage ->

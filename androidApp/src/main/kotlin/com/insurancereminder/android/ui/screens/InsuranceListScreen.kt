@@ -8,6 +8,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -101,7 +103,7 @@ fun InsuranceListScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
-                windowInsets = WindowInsets(0, 0, 0, 0) // Remove insets for edge-to-edge
+                windowInsets = WindowInsets.statusBars
             )
         },
         floatingActionButton = {
@@ -436,6 +438,11 @@ private fun SwipeableInsuranceCard(
     var swipeOffset by remember { mutableStateOf(0f) }
     val density = LocalDensity.current
     val swipeThreshold = with(density) { 80.dp.toPx() }
+    val maxSwipe = with(density) { 160.dp.toPx() }
+
+    val draggableState = rememberDraggableState { delta ->
+        swipeOffset = (swipeOffset + delta).coerceIn(-maxSwipe, maxSwipe)
+    }
 
     Box(
         modifier = Modifier.fillMaxWidth()
@@ -517,6 +524,25 @@ private fun SwipeableInsuranceCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .offset { IntOffset(swipeOffset.roundToInt(), 0) }
+                .draggable(
+                    state = draggableState,
+                    orientation = Orientation.Horizontal,
+                    onDragStopped = {
+                        // Snap back to center or trigger action
+                        if (swipeOffset > swipeThreshold) {
+                            // Trigger delete
+                            onDelete()
+                            swipeOffset = 0f
+                        } else if (swipeOffset < -swipeThreshold) {
+                            // Trigger renew
+                            onRenew()
+                            swipeOffset = 0f
+                        } else {
+                            // Snap back to center
+                            swipeOffset = 0f
+                        }
+                    }
+                )
                 .clickable { onEdit() },
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {

@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.AttachFile
 import androidx.compose.material.icons.filled.CameraAlt
@@ -35,10 +36,13 @@ import com.insurancereminder.android.viewmodel.InsuranceViewModel
 import com.insurancereminder.shared.di.SharedModule
 import com.insurancereminder.shared.model.ComparisonProvider
 import com.insurancereminder.shared.model.InsuranceCompany
+import com.insurancereminder.shared.model.Insurance
 import com.insurancereminder.shared.model.InsuranceType
 import com.insurancereminder.shared.service.ComparisonService
 import com.insurancereminder.shared.service.InsuranceCompanyService
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.toKotlinLocalDate
 import com.insurancereminder.shared.ui.components.DatePickerUtils
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
@@ -50,17 +54,19 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun AddInsuranceScreen(
     viewModel: InsuranceViewModel,
+    insurance: Insurance? = null, // null for add, Insurance object for edit
     onNavigateBack: () -> Unit
 ) {
-    var name by remember { mutableStateOf("") }
-    var selectedType by remember { mutableStateOf(InsuranceType.AUTO) }
-    var expiryDate by remember { mutableStateOf("") }
-    var pickedDate by remember { mutableStateOf(JavaLocalDate.now()) }
+    val isEditing = insurance != null
+    var name by remember { mutableStateOf(insurance?.name ?: "") }
+    var selectedType by remember { mutableStateOf(insurance?.type ?: InsuranceType.AUTO) }
+    var expiryDate by remember { mutableStateOf(insurance?.expiryDate?.toString() ?: "") }
+    var pickedDate by remember { mutableStateOf(insurance?.expiryDate?.let { it.toJavaLocalDate() } ?: JavaLocalDate.now()) }
     val dateDialogState = rememberMaterialDialogState()
-    var reminderDays by remember { mutableStateOf("30") }
-    var currentPrice by remember { mutableStateOf("") }
-    var companyName by remember { mutableStateOf("") }
-    var policyNumber by remember { mutableStateOf("") }
+    var reminderDays by remember { mutableStateOf(insurance?.reminderDaysBefore?.toString() ?: "30") }
+    var currentPrice by remember { mutableStateOf(insurance?.currentPrice?.toString() ?: "") }
+    var companyName by remember { mutableStateOf(insurance?.companyName ?: "") }
+    var policyNumber by remember { mutableStateOf(insurance?.policyNumber ?: "") }
     var selectedFileUri by remember { mutableStateOf<Uri?>(null) }
     var selectedFileName by remember { mutableStateOf<String?>(null) }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
@@ -100,14 +106,26 @@ fun AddInsuranceScreen(
     val isLoading by viewModel.isLoading.collectAsState()
     val error by viewModel.error.collectAsState()
 
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Insurance") },
+                title = { Text(if (isEditing) "Edit Insurance" else "Add Insurance") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    if (isEditing) {
+                        IconButton(onClick = { showDeleteDialog = true }) {
+                            Icon(
+                                Icons.Default.Delete,
+                                contentDescription = "Delete",
+                                tint = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -115,7 +133,7 @@ fun AddInsuranceScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
-                windowInsets = WindowInsets(0, 0, 0, 0) // Remove insets for edge-to-edge
+                windowInsets = WindowInsets.statusBars
             )
         }
     ) { paddingValues ->
@@ -466,7 +484,7 @@ fun AddInsuranceScreen(
                         color = MaterialTheme.colorScheme.onPrimary
                     )
                 } else {
-                    Text("Add Insurance")
+                    Text(if (isEditing) "Save Changes" else "Add Insurance")
                 }
             }
         }
@@ -492,5 +510,30 @@ fun AddInsuranceScreen(
         ) { date ->
             pickedDate = date
         }
+    }
+
+    // Delete confirmation dialog
+    if (showDeleteDialog && isEditing && insurance != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text("Delete Insurance") },
+            text = { Text("Are you sure you want to delete ${insurance.name}? This action cannot be undone.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        viewModel.deleteInsurance(insurance.id)
+                        showDeleteDialog = false
+                        onNavigateBack()
+                    }
+                ) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }

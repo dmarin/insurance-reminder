@@ -5,6 +5,8 @@ struct InsuranceListView: View {
     @StateObject private var viewModel = InsuranceListViewModel()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @State private var showingDeleteAlert = false
+    @State private var insuranceToDelete: Insurance?
 
     private var isTablet: Bool {
         horizontalSizeClass == .regular && verticalSizeClass == .regular
@@ -61,6 +63,21 @@ struct InsuranceListView: View {
         .onAppear {
             viewModel.loadInsurances()
         }
+        .alert("Delete Insurance", isPresented: $showingDeleteAlert) {
+            Button("Delete", role: .destructive) {
+                if let insurance = insuranceToDelete {
+                    viewModel.deleteInsurance(insurance)
+                    insuranceToDelete = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                insuranceToDelete = nil
+            }
+        } message: {
+            if let insurance = insuranceToDelete {
+                Text("Are you sure you want to delete \(insurance.name)? This action cannot be undone.")
+            }
+        }
     }
 }
 
@@ -84,13 +101,14 @@ struct InsuranceList: View {
                             InsuranceCardView(insurance: insurance, isCompact: false)
                                 .swipeActions(edge: .trailing) {
                                     Button("Delete", role: .destructive) {
-                                        // Delete action
+                                        insuranceToDelete = insurance
+                                        showingDeleteAlert = true
                                     }
                                     .tint(.red)
                                 }
                                 .swipeActions(edge: .leading) {
                                     Button("Renew") {
-                                        // Renew action
+                                        viewModel.renewInsurance(insurance)
                                     }
                                     .tint(.blue)
                                 }
@@ -118,10 +136,13 @@ struct InsuranceList: View {
                                             Button(action: { /* Edit */ }) {
                                                 Label("Edit", systemImage: "pencil")
                                             }
-                                            Button(action: { /* Renew */ }) {
+                                            Button(action: { viewModel.renewInsurance(insurance) }) {
                                                 Label("Renew", systemImage: "arrow.clockwise")
                                             }
-                                            Button(action: { /* Delete */ }, role: .destructive) {
+                                            Button(action: {
+                                                insuranceToDelete = insurance
+                                                showingDeleteAlert = true
+                                            }, role: .destructive) {
                                                 Label("Delete", systemImage: "trash")
                                             }
                                         }
@@ -385,5 +406,20 @@ class InsuranceListViewModel: ObservableObject {
     // This would use shared InsuranceUseCases from Kotlin Multiplatform
     func loadInsurances() {
         // Implementation using shared code
+    }
+
+    func deleteInsurance(_ insurance: Insurance) {
+        // Remove from local list immediately for UI responsiveness
+        insurances.removeAll { $0.id == insurance.id }
+
+        // Use shared Kotlin code to delete from repository
+        // Implementation would call shared InsuranceUseCases.deleteInsurance(insurance.id)
+    }
+
+    func renewInsurance(_ insurance: Insurance) {
+        // This would show a date picker and call shared code to update expiry date
+        // For now, just update the local model (in real implementation, would use shared code)
+
+        // Implementation would call shared InsuranceUseCases.renewInsurance(insurance.id, newDate)
     }
 }

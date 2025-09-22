@@ -59,4 +59,8 @@ class AuthUseCases(
     fun validatePassword(password: String): Boolean {
         return password.length >= 6
     }
+
+    suspend fun sendPasswordResetEmail(email: String): Result<Unit> {
+        return authRepository.sendPasswordResetEmail(email)
+    }
 }

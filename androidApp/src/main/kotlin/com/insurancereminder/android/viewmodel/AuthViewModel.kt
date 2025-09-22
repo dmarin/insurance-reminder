@@ -182,7 +182,28 @@ class AuthViewModel(
         )
     }
 
+    fun sendPasswordResetEmail() {
+        val email = _loginFormState.value.email
+        if (email.isEmpty() || !authUseCases.validateEmail(email)) return
+
+        viewModelScope.launch {
+            _authState.value = _authState.value.copy(isLoading = true, error = null)
+
+            val result = authUseCases.sendPasswordResetEmail(email)
+
+            _authState.value = _authState.value.copy(
+                isLoading = false,
+                error = if (result.isSuccess) null else result.exceptionOrNull()?.message,
+                successMessage = if (result.isSuccess) "Password reset email sent to $email" else null
+            )
+        }
+    }
+
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
+    }
+
+    fun clearSuccessMessage() {
+        _authState.value = _authState.value.copy(successMessage = null)
     }
 }

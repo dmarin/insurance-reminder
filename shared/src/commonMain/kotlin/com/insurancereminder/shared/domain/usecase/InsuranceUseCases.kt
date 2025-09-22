@@ -2,17 +2,18 @@ package com.insurancereminder.shared.domain.usecase
 
 import com.insurancereminder.shared.model.Insurance
 import com.insurancereminder.shared.model.InsuranceType
-import com.insurancereminder.shared.repository.InsuranceRepository
+import com.insurancereminder.shared.repository.IInsuranceRepository
 import com.insurancereminder.shared.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 
 class InsuranceUseCases(
-    private val repository: InsuranceRepository,
+    private val repository: IInsuranceRepository,
     private val authRepository: AuthRepository
 ) {
 
@@ -20,27 +21,25 @@ class InsuranceUseCases(
         return repository.getActiveInsurances()
     }
 
-    suspend fun getActiveInsurancesForCurrentUser(): Flow<List<Insurance>> {
-        return try {
-            println("InsuranceUseCases: Getting current user...")
-            val currentUser = authRepository.currentUser.first()
-            val userId = currentUser?.uid
-            println("InsuranceUseCases: Current user ID: $userId")
-            println("InsuranceUseCases: Current user email: ${currentUser?.email}")
+    fun getActiveInsurancesForCurrentUser(): Flow<List<Insurance>> {
+        return authRepository.currentUser.flatMapLatest { currentUser ->
+            try {
+                val userId = currentUser?.uid
+                println("InsuranceUseCases: Current user ID: $userId")
+                println("InsuranceUseCases: Current user email: ${currentUser?.email}")
 
-            if (userId != null) {
-                println("InsuranceUseCases: Querying for user $userId")
-                val flow = repository.getActiveInsurancesForUser(userId)
-                println("InsuranceUseCases: Got Flow from repository")
-                flow
-            } else {
-                println("InsuranceUseCases: No user ID, using general query")
-                repository.getActiveInsurances() // Fallback for guest mode
+                if (userId != null) {
+                    println("InsuranceUseCases: Querying for user $userId")
+                    repository.getActiveInsurancesForUser(userId)
+                } else {
+                    println("InsuranceUseCases: No user ID, using general query")
+                    repository.getActiveInsurances() // Fallback for guest mode
+                }
+            } catch (e: Exception) {
+                println("InsuranceUseCases: Error getting user: ${e.message}")
+                e.printStackTrace()
+                repository.getActiveInsurances() // Fallback
             }
-        } catch (e: Exception) {
-            println("InsuranceUseCases: Error getting user: ${e.message}")
-            e.printStackTrace()
-            repository.getActiveInsurances() // Fallback
         }
     }
 

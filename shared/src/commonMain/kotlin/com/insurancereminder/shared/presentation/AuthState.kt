@@ -7,7 +7,8 @@ data class AuthState(
     val isAuthenticated: Boolean = false,
     val isLoading: Boolean = false,
     val error: String? = null,
-    val isGuestMode: Boolean = true
+    val isGuestMode: Boolean = true,
+    val successMessage: String? = null
 ) {
     // New monetization: Any registered user gets premium features, guests get limited features
     val canAccessPremiumFeatures: Boolean get() = isAuthenticated
