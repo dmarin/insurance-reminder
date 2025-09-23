@@ -65,8 +65,9 @@ fun InsuranceReminderApp() {
                     navController.navigate("add_insurance")
                 },
                 onEditInsurance = { insurance ->
-                    // TODO: Navigate to edit screen with insurance ID
-                    navController.navigate("add_insurance") // For now, use same screen
+                    // Store the insurance in ViewModel for editing
+                    insuranceViewModel.setInsuranceToEdit(insurance)
+                    navController.navigate("add_insurance")
                 },
                 onNavigateToProfile = {
                     navController.navigate("profile")
@@ -77,6 +78,7 @@ fun InsuranceReminderApp() {
             AddInsuranceScreen(
                 viewModel = insuranceViewModel,
                 onNavigateBack = {
+                    insuranceViewModel.setInsuranceToEdit(null) // Clear edit state
                     navController.popBackStack()
                 }
             )

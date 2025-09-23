@@ -74,6 +74,16 @@ class LocalInsuranceRepository(private val database: InsuranceDatabase) {
         )
     }
 
+    suspend fun getInsurance(insuranceId: String): Insurance? {
+        return try {
+            val dbInsurance = database.insuranceQueries.selectById(insuranceId).executeAsOneOrNull()
+            dbInsurance?.let { mapToInsurance(it) }
+        } catch (e: Exception) {
+            println("LocalInsuranceRepository: Failed to get insurance with ID $insuranceId: ${e.message}")
+            null
+        }
+    }
+
     suspend fun deleteInsurance(insuranceId: String) {
         val currentTime = LocalDate.parse("2024-01-01") // You'll need proper date handling
         database.insuranceQueries.deleteInsurance(
@@ -97,6 +107,7 @@ class LocalInsuranceRepository(private val database: InsuranceDatabase) {
     }
 
     private fun mapToInsurance(dbInsurance: com.insurancereminder.shared.database.Insurance): Insurance {
+        println("LocalInsuranceRepository: Mapping insurance from DB - ID: '${dbInsurance.id}', name: '${dbInsurance.name}'")
         return Insurance(
             id = dbInsurance.id,
             type = InsuranceType.valueOf(dbInsurance.type),

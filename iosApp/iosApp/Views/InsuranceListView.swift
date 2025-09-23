@@ -7,6 +7,9 @@ struct InsuranceListView: View {
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var showingDeleteAlert = false
     @State private var insuranceToDelete: Insurance?
+    @State private var showingRenewInsurance: Insurance?
+    @State private var showingEditInsurance: Insurance?
+    @State private var showingAddInsurance = false
 
     private var isTablet: Bool {
         horizontalSizeClass == .regular && verticalSizeClass == .regular
@@ -52,7 +55,9 @@ struct InsuranceListView: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { /* Add insurance */ }) {
+                    Button(action: {
+                        showingAddInsurance = true
+                    }) {
                         Image(systemName: "plus")
                             .foregroundColor(.accentColor)
                     }
@@ -78,6 +83,43 @@ struct InsuranceListView: View {
                 Text("Are you sure you want to delete \(insurance.name)? This action cannot be undone.")
             }
         }
+        .sheet(item: $showingEditInsurance) { insurance in
+            InsuranceFormView(insurance: insurance) { updatedInsurance in
+                viewModel.updateInsurance(updatedInsurance)
+                showingEditInsurance = nil
+            }
+        }
+        .sheet(item: $showingRenewInsurance) { insurance in
+            RenewInsuranceView(insurance: insurance) { newDate, newPrice in
+                // Create updated insurance with new expiry date and optional price
+                let renewedInsurance = Insurance(
+                    id: insurance.id,
+                    name: insurance.name,
+                    type: insurance.type,
+                    expiryDate: newDate,
+                    reminderDaysBefore: insurance.reminderDaysBefore,
+                    isActive: insurance.isActive,
+                    currentPrice: newPrice ?? insurance.currentPrice,
+                    currency: insurance.currency,
+                    policyFileUrl: insurance.policyFileUrl,
+                    policyFileName: insurance.policyFileName,
+                    companyName: insurance.companyName,
+                    policyNumber: insurance.policyNumber,
+                    userId: insurance.userId,
+                    sharedWithUserId: insurance.sharedWithUserId,
+                    createdAt: insurance.createdAt,
+                    updatedAt: Date()
+                )
+                viewModel.updateInsurance(renewedInsurance)
+                showingRenewInsurance = nil
+            }
+        }
+        .sheet(isPresented: $showingAddInsurance) {
+            InsuranceFormView { newInsurance in
+                viewModel.addInsurance(newInsurance)
+                showingAddInsurance = false
+            }
+        }
     }
 }
 
@@ -99,6 +141,9 @@ struct InsuranceList: View {
                     Section(header: CategoryHeader(title: group.category)) {
                         ForEach(group.insurances, id: \.id) { insurance in
                             InsuranceCardView(insurance: insurance, isCompact: false)
+                                .onTapGesture {
+                                    showingEditInsurance = insurance
+                                }
                                 .swipeActions(edge: .trailing) {
                                     Button("Delete", role: .destructive) {
                                         insuranceToDelete = insurance
@@ -133,7 +178,9 @@ struct InsuranceList: View {
                                 ForEach(group.insurances, id: \.id) { insurance in
                                     InsuranceCardView(insurance: insurance, isCompact: true)
                                         .contextMenu {
-                                            Button(action: { /* Edit */ }) {
+                                            Button(action: {
+                                                showingEditInsurance = insurance
+                                            }) {
                                                 Label("Edit", systemImage: "pencil")
                                             }
                                             Button(action: { viewModel.renewInsurance(insurance) }) {
@@ -417,9 +464,25 @@ class InsuranceListViewModel: ObservableObject {
     }
 
     func renewInsurance(_ insurance: Insurance) {
-        // This would show a date picker and call shared code to update expiry date
-        // For now, just update the local model (in real implementation, would use shared code)
+        // Show date picker to select new expiry date
+        showingRenewInsurance = insurance
+    }
 
-        // Implementation would call shared InsuranceUseCases.renewInsurance(insurance.id, newDate)
+    func addInsurance(_ insurance: Insurance) {
+        // Add to local list immediately for UI responsiveness
+        insurances.append(insurance)
+
+        // Use shared Kotlin code to add to repository
+        // Implementation would call shared InsuranceUseCases.addInsurance(insurance)
+    }
+
+    func updateInsurance(_ insurance: Insurance) {
+        // Update in local list immediately for UI responsiveness
+        if let index = insurances.firstIndex(where: { $0.id == insurance.id }) {
+            insurances[index] = insurance
+        }
+
+        // Use shared Kotlin code to update in repository
+        // Implementation would call shared InsuranceUseCases.updateInsurance(insurance)
     }
 }

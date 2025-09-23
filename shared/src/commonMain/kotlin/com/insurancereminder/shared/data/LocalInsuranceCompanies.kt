@@ -211,6 +211,68 @@ object LocalInsuranceCompanies {
                 supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.HOME, InsuranceType.HEALTH, InsuranceType.LIFE),
                 websiteUrl = "https://www.segurcaixaadeslas.es",
                 isActive = true
+            ),
+            // User requested companies
+            InsuranceCompany(
+                id = "genesis_seguros",
+                name = "genesis_seguros",
+                displayName = "Genesis Seguros",
+                logoUrl = "https://www.genesisseguros.es/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.HOME, InsuranceType.MOTORCYCLE, InsuranceType.LIFE),
+                websiteUrl = "https://www.genesisseguros.es",
+                isActive = true
+            ),
+            InsuranceCompany(
+                id = "balumba",
+                name = "balumba",
+                displayName = "Balumba Seguros",
+                logoUrl = "https://www.balumba.com/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.MOTORCYCLE, InsuranceType.HOME),
+                websiteUrl = "https://www.balumba.com",
+                isActive = true
+            ),
+            InsuranceCompany(
+                id = "qualitas",
+                name = "qualitas",
+                displayName = "Qualitas Seguros",
+                logoUrl = "https://www.qualitas.es/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.HEALTH, InsuranceType.DENTAL, InsuranceType.AUTO, InsuranceType.HOME),
+                websiteUrl = "https://www.qualitas.es",
+                isActive = true
+            ),
+            InsuranceCompany(
+                id = "direct_seguros",
+                name = "direct_seguros",
+                displayName = "Direct Seguros",
+                logoUrl = "https://www.directseguros.es/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.HOME, InsuranceType.MOTORCYCLE),
+                websiteUrl = "https://www.directseguros.es",
+                isActive = true
+            ),
+            // Additional popular Spanish insurers
+            InsuranceCompany(
+                id = "verti",
+                name = "verti",
+                displayName = "Verti Seguros",
+                logoUrl = "https://www.verti.es/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.MOTORCYCLE),
+                websiteUrl = "https://www.verti.es",
+                isActive = true
+            ),
+            InsuranceCompany(
+                id = "admiral",
+                name = "admiral",
+                displayName = "Admiral Seguros",
+                logoUrl = "https://www.admiral.es/favicon.ico",
+                country = "ES",
+                supportedTypes = listOf(InsuranceType.AUTO, InsuranceType.HOME),
+                websiteUrl = "https://www.admiral.es",
+                isActive = true
             )
         )
     }

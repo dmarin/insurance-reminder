@@ -95,6 +95,7 @@ class InsuranceUseCases(
         }
     }
 
+
     suspend fun deleteInsurance(insuranceId: String): Result<Unit> {
         return try {
             repository.deleteInsurance(insuranceId)
@@ -105,25 +106,81 @@ class InsuranceUseCases(
     }
 
     suspend fun renewInsurance(insuranceId: String, newExpiryDate: LocalDate): Result<Unit> {
+        return renewInsurance(insuranceId, newExpiryDate, null)
+    }
+
+    suspend fun renewInsurance(insuranceId: String, newExpiryDate: LocalDate, newPrice: Double?): Result<Unit> {
         return try {
-            // Get the existing insurance
-            val allInsurances = mutableListOf<Insurance>()
-            repository.getActiveInsurances().collect { list ->
-                allInsurances.addAll(list)
-            }
+            println("InsuranceUseCases: Renewing insurance $insuranceId with new date $newExpiryDate and price $newPrice")
 
-            val existingInsurance = allInsurances.find { it.id == insuranceId }
-                ?: return Result.failure(Exception("Insurance not found"))
+            // Get the existing insurance by trying to fetch it directly first
+            val existingInsurance = repository.getInsurance(insuranceId)
+                ?: return Result.failure(Exception("Insurance not found with ID: $insuranceId"))
 
-            // Update with new expiry date
+            println("InsuranceUseCases: Found insurance to renew: ${existingInsurance.name}")
+
+            // Update with new expiry date and optionally new price
             val renewedInsurance = existingInsurance.copy(
                 expiryDate = newExpiryDate,
+                currentPrice = newPrice ?: existingInsurance.currentPrice,
                 updatedAt = Clock.System.todayIn(TimeZone.currentSystemDefault())
             )
 
+            println("InsuranceUseCases: Updating insurance with new expiry date: $newExpiryDate and price: ${renewedInsurance.currentPrice}")
             repository.updateInsurance(renewedInsurance)
+            println("InsuranceUseCases: Insurance renewed successfully")
+
             Result.success(Unit)
         } catch (e: Exception) {
+            println("InsuranceUseCases: Failed to renew insurance: ${e.message}")
+            e.printStackTrace()
+            Result.failure(e)
+        }
+    }
+
+    suspend fun updateInsurance(
+        insuranceId: String,
+        name: String,
+        type: InsuranceType,
+        expiryDate: LocalDate,
+        reminderDaysBefore: Int = 30,
+        currentPrice: Double? = null,
+        companyName: String? = null,
+        companyId: String? = null,
+        companyLogoUrl: String? = null,
+        policyNumber: String? = null
+    ): Result<Unit> {
+        return try {
+            println("InsuranceUseCases: Updating insurance $insuranceId")
+
+            // Get the existing insurance
+            val existingInsurance = repository.getInsurance(insuranceId)
+                ?: return Result.failure(Exception("Insurance not found with ID: $insuranceId"))
+
+            println("InsuranceUseCases: Found insurance to update: ${existingInsurance.name}")
+
+            // Update with new data
+            val updatedInsurance = existingInsurance.copy(
+                name = name,
+                type = type,
+                expiryDate = expiryDate,
+                reminderDaysBefore = reminderDaysBefore,
+                currentPrice = currentPrice,
+                companyName = companyName,
+                companyId = companyId,
+                companyLogoUrl = companyLogoUrl,
+                policyNumber = policyNumber,
+                updatedAt = Clock.System.todayIn(TimeZone.currentSystemDefault())
+            )
+
+            println("InsuranceUseCases: Updating insurance with new data")
+            repository.updateInsurance(updatedInsurance)
+            println("InsuranceUseCases: Insurance updated successfully")
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            println("InsuranceUseCases: Failed to update insurance: ${e.message}")
+            e.printStackTrace()
             Result.failure(e)
         }
     }

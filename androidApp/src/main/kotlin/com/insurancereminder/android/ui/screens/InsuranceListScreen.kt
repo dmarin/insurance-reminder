@@ -12,6 +12,8 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -88,6 +90,15 @@ fun InsuranceListScreen(
 
     var showDeleteDialog by remember { mutableStateOf<Insurance?>(null) }
     var showRenewDialog by remember { mutableStateOf<Insurance?>(null) }
+
+    // Helper functions for actions
+    fun onDeleteInsurance(insurance: Insurance) {
+        showDeleteDialog = insurance
+    }
+
+    fun onRenewInsurance(insurance: Insurance) {
+        showRenewDialog = insurance
+    }
 
     Scaffold(
         topBar = {
@@ -185,9 +196,9 @@ fun InsuranceListScreen(
         RenewInsuranceDialog(
             insurance = insurance,
             onDismiss = { showRenewDialog = null },
-            onRenew = { newDate ->
-                // Update insurance with new expiry date
-                viewModel.renewInsurance(insurance.id, newDate)
+            onRenew = { newDate, newPrice ->
+                // Update insurance with new expiry date and optional price
+                viewModel.renewInsurance(insurance.id, newDate, newPrice)
                 showRenewDialog = null
             }
         )
@@ -454,7 +465,38 @@ private fun SwipeableInsuranceCard(
                 .height(120.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Renew action (left swipe reveals this on the right)
+            // Edit action (small left swipe reveals this on the right)
+            if (swipeOffset < -swipeThreshold / 2) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(80.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
+                    shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable { onEdit() },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(
+                                Icons.Default.Edit,
+                                contentDescription = "Edit",
+                                tint = MaterialTheme.colorScheme.onSecondary
+                            )
+                            Text(
+                                "Edit",
+                                color = MaterialTheme.colorScheme.onSecondary,
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+                }
+            }
+
+            // Renew action (larger left swipe reveals this on the right)
             if (swipeOffset < -swipeThreshold) {
                 Card(
                     modifier = Modifier
@@ -727,9 +769,10 @@ private fun EnhancedInsuranceCard(insurance: Insurance) {
 private fun RenewInsuranceDialog(
     insurance: Insurance,
     onDismiss: () -> Unit,
-    onRenew: (LocalDate) -> Unit
+    onRenew: (LocalDate, Double?) -> Unit
 ) {
     var newExpiryDate by remember { mutableStateOf(insurance.expiryDate.toString()) }
+    var newPrice by remember { mutableStateOf(insurance.currentPrice?.toString() ?: "") }
     var pickedDate by remember { mutableStateOf(insurance.expiryDate.toJavaLocalDate()) }
     val dateDialogState = rememberMaterialDialogState()
 
@@ -738,6 +781,31 @@ private fun RenewInsuranceDialog(
         title = { Text("Renew ${insurance.name}") },
         text = {
             Column {
+                // Quick +1 year button
+                OutlinedButton(
+                    onClick = {
+                        val currentDate = insurance.expiryDate
+                        val oneYearLater = kotlinx.datetime.LocalDate(
+                            currentDate.year + 1,
+                            currentDate.month,
+                            currentDate.dayOfMonth
+                        )
+                        newExpiryDate = oneYearLater.toString()
+                        pickedDate = oneYearLater.toJavaLocalDate()
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(
+                        Icons.Default.Add,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Add 1 Year")
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
                 Text("Select new expiry date:")
                 Spacer(modifier = Modifier.height(8.dp))
                 OutlinedTextField(
@@ -765,13 +833,30 @@ private fun RenewInsuranceDialog(
                         modifier = Modifier.padding(top = 4.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text("Update price (optional):")
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = newPrice,
+                    onValueChange = { newPrice = it },
+                    label = { Text("New Price (€)") },
+                    placeholder = { Text("0.00") },
+                    leadingIcon = {
+                        Icon(Icons.Default.Euro, contentDescription = null)
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         },
         confirmButton = {
             TextButton(
                 onClick = {
                     DatePickerUtils.parseDate(newExpiryDate)?.let { date ->
-                        onRenew(date)
+                        val priceValue = newPrice.toDoubleOrNull()
+                        onRenew(date, priceValue)
                     }
                     onDismiss()
                 },

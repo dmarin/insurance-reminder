@@ -54,19 +54,19 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun AddInsuranceScreen(
     viewModel: InsuranceViewModel,
-    insurance: Insurance? = null, // null for add, Insurance object for edit
     onNavigateBack: () -> Unit
 ) {
-    val isEditing = insurance != null
-    var name by remember { mutableStateOf(insurance?.name ?: "") }
-    var selectedType by remember { mutableStateOf(insurance?.type ?: InsuranceType.AUTO) }
-    var expiryDate by remember { mutableStateOf(insurance?.expiryDate?.toString() ?: "") }
-    var pickedDate by remember { mutableStateOf(insurance?.expiryDate?.let { it.toJavaLocalDate() } ?: JavaLocalDate.now()) }
+    val insuranceToEdit by viewModel.insuranceToEdit.collectAsState()
+    val isEditing = insuranceToEdit != null
+    var name by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.name ?: "") }
+    var selectedType by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.type ?: InsuranceType.AUTO) }
+    var expiryDate by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.expiryDate?.toString() ?: "") }
+    var pickedDate by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.expiryDate?.let { it.toJavaLocalDate() } ?: JavaLocalDate.now()) }
     val dateDialogState = rememberMaterialDialogState()
-    var reminderDays by remember { mutableStateOf(insurance?.reminderDaysBefore?.toString() ?: "30") }
-    var currentPrice by remember { mutableStateOf(insurance?.currentPrice?.toString() ?: "") }
-    var companyName by remember { mutableStateOf(insurance?.companyName ?: "") }
-    var policyNumber by remember { mutableStateOf(insurance?.policyNumber ?: "") }
+    var reminderDays by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.reminderDaysBefore?.toString() ?: "30") }
+    var currentPrice by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.currentPrice?.toString() ?: "") }
+    var companyName by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.companyName ?: "") }
+    var policyNumber by remember(insuranceToEdit) { mutableStateOf(insuranceToEdit?.policyNumber ?: "") }
     var selectedFileUri by remember { mutableStateOf<Uri?>(null) }
     var selectedFileName by remember { mutableStateOf<String?>(null) }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
@@ -458,18 +458,35 @@ fun AddInsuranceScreen(
                             else -> companyName.takeIf { it.isNotBlank() }
                         }
 
-                        viewModel.addInsurance(
-                            name = name,
-                            type = selectedType,
-                            expiryDate = date,
-                            reminderDaysBefore = reminderDays.toIntOrNull() ?: 30,
-                            currentPrice = currentPrice.toDoubleOrNull(),
-                            companyName = finalCompanyName,
-                            companyId = company?.id?.takeIf { it != "other" },
-                            companyLogoUrl = company?.logoUrl?.takeIf { it.isNotBlank() && company.id != "other" },
-                            policyNumber = policyNumber.takeIf { it.isNotBlank() },
-                            onSuccess = { onNavigateBack() }
-                        )
+                        if (isEditing && insuranceToEdit != null) {
+                            val currentInsurance = insuranceToEdit!!
+                            viewModel.updateInsurance(
+                                insuranceId = currentInsurance.id,
+                                name = name,
+                                type = selectedType,
+                                expiryDate = date,
+                                reminderDaysBefore = reminderDays.toIntOrNull() ?: 30,
+                                currentPrice = currentPrice.toDoubleOrNull(),
+                                companyName = finalCompanyName,
+                                companyId = company?.id?.takeIf { it != "other" },
+                                companyLogoUrl = company?.logoUrl?.takeIf { it.isNotBlank() && company.id != "other" },
+                                policyNumber = policyNumber.takeIf { it.isNotBlank() },
+                                onSuccess = { onNavigateBack() }
+                            )
+                        } else {
+                            viewModel.addInsurance(
+                                name = name,
+                                type = selectedType,
+                                expiryDate = date,
+                                reminderDaysBefore = reminderDays.toIntOrNull() ?: 30,
+                                currentPrice = currentPrice.toDoubleOrNull(),
+                                companyName = finalCompanyName,
+                                companyId = company?.id?.takeIf { it != "other" },
+                                companyLogoUrl = company?.logoUrl?.takeIf { it.isNotBlank() && company.id != "other" },
+                                policyNumber = policyNumber.takeIf { it.isNotBlank() },
+                                onSuccess = { onNavigateBack() }
+                            )
+                        }
                     } catch (e: Exception) {
                         // Handle invalid date format
                     }
@@ -513,15 +530,16 @@ fun AddInsuranceScreen(
     }
 
     // Delete confirmation dialog
-    if (showDeleteDialog && isEditing && insurance != null) {
+    if (showDeleteDialog && isEditing && insuranceToEdit != null) {
+        val currentInsurance = insuranceToEdit!!
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
             title = { Text("Delete Insurance") },
-            text = { Text("Are you sure you want to delete ${insurance.name}? This action cannot be undone.") },
+            text = { Text("Are you sure you want to delete ${currentInsurance.name}? This action cannot be undone.") },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        viewModel.deleteInsurance(insurance.id)
+                        viewModel.deleteInsurance(currentInsurance.id)
                         showDeleteDialog = false
                         onNavigateBack()
                     }

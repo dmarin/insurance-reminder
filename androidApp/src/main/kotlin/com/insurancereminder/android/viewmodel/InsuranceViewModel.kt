@@ -18,6 +18,9 @@ class InsuranceViewModel(
     private val _state = MutableStateFlow(InsuranceListState())
     val state: StateFlow<InsuranceListState> = _state.asStateFlow()
 
+    private val _insuranceToEdit = MutableStateFlow<com.insurancereminder.shared.model.Insurance?>(null)
+    val insuranceToEdit: StateFlow<com.insurancereminder.shared.model.Insurance?> = _insuranceToEdit.asStateFlow()
+
     init {
         loadInsurances()
     }
@@ -102,11 +105,11 @@ class InsuranceViewModel(
         }
     }
 
-    fun renewInsurance(insuranceId: String, newExpiryDate: LocalDate) {
+    fun renewInsurance(insuranceId: String, newExpiryDate: LocalDate, newPrice: Double? = null) {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
 
-            val result = insuranceUseCases.renewInsurance(insuranceId, newExpiryDate)
+            val result = insuranceUseCases.renewInsurance(insuranceId, newExpiryDate, newPrice)
 
             _state.value = _state.value.copy(
                 isLoading = false,
@@ -114,9 +117,60 @@ class InsuranceViewModel(
             )
 
             if (result.isSuccess) {
-                android.util.Log.d("InsuranceViewModel", "Insurance renewed successfully")
+                android.util.Log.d("InsuranceViewModel", "Insurance renewed successfully with price: $newPrice")
             } else {
                 android.util.Log.e("InsuranceViewModel", "Failed to renew insurance: ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+    fun setInsuranceToEdit(insurance: com.insurancereminder.shared.model.Insurance?) {
+        android.util.Log.d("InsuranceViewModel", "Setting insurance to edit: ID='${insurance?.id}', name='${insurance?.name}'")
+        _insuranceToEdit.value = insurance
+    }
+
+    fun updateInsurance(
+        insuranceId: String,
+        name: String,
+        type: InsuranceType,
+        expiryDate: LocalDate,
+        reminderDaysBefore: Int = 30,
+        currentPrice: Double? = null,
+        companyName: String? = null,
+        companyId: String? = null,
+        companyLogoUrl: String? = null,
+        policyNumber: String? = null,
+        onSuccess: (() -> Unit)? = null
+    ) {
+        viewModelScope.launch {
+            _state.value = _state.value.copy(isLoading = true, error = null)
+
+            android.util.Log.d("InsuranceViewModel", "Updating insurance with ID: '$insuranceId', name: '$name'")
+
+            val result = insuranceUseCases.updateInsurance(
+                insuranceId = insuranceId,
+                name = name,
+                type = type,
+                expiryDate = expiryDate,
+                reminderDaysBefore = reminderDaysBefore,
+                currentPrice = currentPrice,
+                companyName = companyName,
+                companyId = companyId,
+                companyLogoUrl = companyLogoUrl,
+                policyNumber = policyNumber
+            )
+
+            _state.value = _state.value.copy(
+                isLoading = false,
+                error = result.exceptionOrNull()?.message
+            )
+
+            if (result.isSuccess) {
+                android.util.Log.d("InsuranceViewModel", "Insurance updated successfully")
+                _insuranceToEdit.value = null // Clear edit state
+                onSuccess?.invoke()
+            } else {
+                android.util.Log.e("InsuranceViewModel", "Failed to update insurance: ${result.exceptionOrNull()?.message}")
             }
         }
     }
